@@ -12,25 +12,45 @@ struct CharacaterDto: Decodable {
         let count: Int
         let pages: Int
         let next: URL?
+        
+        func toDomain() -> Page {
+            let nextPage: Int? = next?.getQueryItemValue("page").flatMap { Int($0) }
+            
+            return Page(
+                hasMore: nextPage != nil,
+                nextPage: nextPage
+            )
+        }
     }
     
     struct CharacterDto: Decodable {
         let id: Int
         let name: String
         let type: String
-        let origin: LocationDto
-        let location: LocationDto
         let image: URL?
-        let episode: [String]
+        let episode: [URL]
         let url: URL?
         let created: Date
-    }
-    
-    struct LocationDto: Decodable {
-        let name: String
-        let url: String
+        
+        func toDomain() -> Character {
+            .init(
+                id: id,
+                name: name,
+                type: type,
+                epidsode: episode,
+                image: image,
+                content: url
+            )
+        }
     }
 
     let info: PageDto
     let results: [CharacterDto]
+    
+    func toDomain() -> Paginated<Character> {
+        .init(
+            page: info.toDomain(),
+            results: results.map { $0.toDomain() }
+        )
+    }
 }

@@ -23,7 +23,9 @@ struct ContentView: View {
                 decoder: decoder
             )
             
-            let characters = try? await service.execute(.character(name: "rick", page: 6))
+            let repository = CharactersRepository(service: service)
+            
+            let characters = try? await repository.fetchCharacters(name: "rick", page: 6)
             print(characters?.results.count)
         }
         .padding()

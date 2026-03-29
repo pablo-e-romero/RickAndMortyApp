@@ -60,6 +60,11 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		B1E9A1242F79A30A00CF608E /* Domain */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Domain;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +95,7 @@
 		B1E9A0552F75E43B00CF608E = {
 			isa = PBXGroup;
 			children = (
+				B1E9A1242F79A30A00CF608E /* Domain */,
 				B1E9A0F72F799CDD00CF608E /* Common */,
 				B1E9A0F32F799C6C00CF608E /* Data */,
 				B1E9A0EC2F799BEA00CF608E /* Networking */,
@@ -130,6 +136,7 @@
 				B1E9A0EC2F799BEA00CF608E /* Networking */,
 				B1E9A0F32F799C6C00CF608E /* Data */,
 				B1E9A0F72F799CDD00CF608E /* Common */,
+				B1E9A1242F79A30A00CF608E /* Domain */,
 			);
 			name = RickAndMortyApp;
 			packageProductDependencies = (
