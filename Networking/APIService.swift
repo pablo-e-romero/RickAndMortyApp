@@ -7,13 +7,18 @@
 
 import Foundation
 
-protocol APIService: Sendable {
+protocol APIServiceProtocol: Sendable {
     func execute<Response: Decodable>(_ endPoint: APIEndpoint<Response>) async throws -> Response
 }
 
-struct URLSessionAPIService: APIService {
+struct APIService: APIServiceProtocol {
     let baseURL: URL
     let decoder: JSONDecoder
+    
+    init(baseURL: URL, decoder: JSONDecoder) {
+        self.baseURL = baseURL
+        self.decoder = decoder
+    }
     
     func execute<Response: Decodable>(_ endPoint: APIEndpoint<Response>) async throws -> Response {
         let request = endPoint.urlRequest(baseURL: baseURL)

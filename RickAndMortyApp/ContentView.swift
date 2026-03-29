@@ -15,6 +15,17 @@ struct ContentView: View {
                 .foregroundStyle(.tint)
             Text("Hello, world!")
         }
+        .task {
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            let service = APIService(
+                baseURL: RicketAndMortyAPIConstants.baseURL,
+                decoder: decoder
+            )
+            
+            let characters = try? await service.execute(.character(name: "rick", page: 6))
+            print(characters?.results.count)
+        }
         .padding()
     }
 }
