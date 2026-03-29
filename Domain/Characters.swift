@@ -7,11 +7,21 @@
 
 import Foundation
 
-struct Character {
+struct Character: Identifiable {
     let id: Int
     let name: String
     let type: String
     let epidsode: [URL]
     let image: URL?
     let content: URL?
+}
+
+extension Character: Hashable {
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }

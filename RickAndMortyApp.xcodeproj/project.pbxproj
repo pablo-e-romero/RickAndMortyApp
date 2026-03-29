@@ -65,6 +65,16 @@
 			path = Domain;
 			sourceTree = "<group>";
 		};
+		B1E9A14D2F79BDB300CF608E /* Presentation */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		B1E9A1B02F79C5DD00CF608E /* DI */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = DI;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +105,8 @@
 		B1E9A0552F75E43B00CF608E = {
 			isa = PBXGroup;
 			children = (
+				B1E9A1B02F79C5DD00CF608E /* DI */,
+				B1E9A14D2F79BDB300CF608E /* Presentation */,
 				B1E9A1242F79A30A00CF608E /* Domain */,
 				B1E9A0F72F799CDD00CF608E /* Common */,
 				B1E9A0F32F799C6C00CF608E /* Data */,
@@ -137,6 +149,8 @@
 				B1E9A0F32F799C6C00CF608E /* Data */,
 				B1E9A0F72F799CDD00CF608E /* Common */,
 				B1E9A1242F79A30A00CF608E /* Domain */,
+				B1E9A14D2F79BDB300CF608E /* Presentation */,
+				B1E9A1B02F79C5DD00CF608E /* DI */,
 			);
 			name = RickAndMortyApp;
 			packageProductDependencies = (
@@ -445,7 +459,7 @@
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -477,7 +491,7 @@
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

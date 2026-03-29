@@ -13,9 +13,9 @@ protocol CharactersRepositoryProtocol {
 }
 
 struct CharactersRepository {
-    private let service: APIService
+    private let service: APIServiceProtocol
     
-    init(service: APIService) {
+    init(service: APIServiceProtocol) {
         self.service = service
     }
 }

@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct RickAndMortyAppApp: App {
+    static let dependencies: DependenciesContainer = .live
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CharactersFlow(depdendecies: Self.dependencies)
         }
     }
 }

@@ -6,6 +6,7 @@
 //
 
 struct Page {
+    static let firstPage = 1
     let hasMore: Bool
     let nextPage: Int?
 }
