@@ -7,6 +7,10 @@
 
 import Foundation
 
+enum APIServiceError: Error {
+    case notFound
+}
+
 protocol APIServiceProtocol: Sendable {
     func execute<Response: Decodable>(_ endPoint: APIEndpoint<Response>) async throws -> Response
 }
@@ -22,7 +26,14 @@ struct APIService: APIServiceProtocol {
     
     func execute<Response: Decodable>(_ endPoint: APIEndpoint<Response>) async throws -> Response {
         let request = endPoint.urlRequest(baseURL: baseURL)
-        let (data, _) = try await URLSession.shared.data(for: request)
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        let statusCode = (response as? HTTPURLResponse)?.statusCode
+        
+        if statusCode == 404 {
+            throw APIServiceError.notFound
+        }
+        
         return try decoder.decode(Response.self, from: data)
     }
 }

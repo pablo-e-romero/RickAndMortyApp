@@ -23,22 +23,40 @@ final class CharactersListViewModel {
         let characters: [Character]
         let hasMore: Bool
     }
+
+    private(set) var state: State<DisplayModel> = .idle
+    var searchText: String = ""
     
     private let repository: CharactersRepositoryProtocol
-    
-    private(set) var state: State<DisplayModel> = .idle
     private var nextPage: Int?
 
     init(repository: CharactersRepositoryProtocol) {
         self.repository = repository
     }
     
-    func fetch(name: String? = nil, page: Int = Page.firstPage) async {
+    func fetchFirstPage() async {
+        await fetch(name: searchText, page: Page.firstPage)
+    }
+    
+    func fetchNextPage() async {
+        guard let nextPage else { return }
+        await fetch(name: searchText, page: nextPage)
+    }
+    
+    func onSearch(_ text: String) async {
+        try? await Task.sleep(for: .milliseconds(300))
+        guard !Task.isCancelled else { return }
+        await fetch(name: text, page: Page.firstPage)
+    }
+}
+
+private extension CharactersListViewModel {
+    func fetch(name: String? = nil, page: Int) async {
         state.toLoading()
         
         do {
             let characters = try await repository.fetchCharacters(
-                name: name,
+                name: name ?? searchText,
                 page: page
             )
             
@@ -57,10 +75,5 @@ final class CharactersListViewModel {
         } catch {
             state.toError(error)
         }
-    }
-    
-    func fetchNextPage() async {
-        guard let nextPage else { return }
-        await fetch(page: nextPage)
     }
 }

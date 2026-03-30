@@ -15,3 +15,12 @@ struct Paginated<Content> {
     let page: Page
     let results: [Content]
 }
+
+extension Paginated {
+    static var empty: Self {
+        .init(
+            page: .init(hasMore: false, nextPage: 0),
+            results: []
+        )
+    }
+}

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CharactersListView: View {
-    let viewModel: CharactersListViewModel
+    @Bindable var viewModel: CharactersListViewModel
     
     var body: some View {
         Group {
@@ -17,9 +17,10 @@ struct CharactersListView: View {
                 Text("Loading")
             case let .loaded(displayModel):
                 LoadedView(
+                    searchText: $viewModel.searchText,
                     displayModel: displayModel,
                     fetchNextPage: viewModel.fetchNextPage,
-                    refresh: { await viewModel.fetch() }
+                    refresh: viewModel.fetchFirstPage
                 )
             case let .error(error):
                 Text(error.localizedDescription)
@@ -27,12 +28,16 @@ struct CharactersListView: View {
         }
         .navigationTitle("Characters")
         .task {
-            await viewModel.fetch()
+            await viewModel.fetchFirstPage()
+        }
+        .task(id: viewModel.searchText) {
+            await viewModel.onSearch(viewModel.searchText)
         }
     }
 }
 
 struct LoadedView: View {
+    @Binding var searchText: String
     let displayModel: CharactersListViewModel.DisplayModel
     let fetchNextPage: () async -> Void
     let refresh: () async -> Void
@@ -55,6 +60,7 @@ struct LoadedView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
             }
         }
+        .searchable(text: $searchText)
         .refreshable {
             await refresh()
         }

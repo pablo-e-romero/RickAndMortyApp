@@ -25,8 +25,13 @@ extension CharactersRepository: CharactersRepositoryProtocol {
         name: String?,
         page: Int?
     ) async throws -> Paginated<Character> {
-        try await service.execute(
-            .character(name: name, page: page)
-        ).toDomain()
+        do {
+            let response = try await service.execute(
+                .character(name: name, page: page)
+            )
+            return response.toDomain()
+        } catch APIServiceError.notFound {
+            return .empty
+        }
     }
 }
