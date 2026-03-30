@@ -2,15 +2,8 @@
 //  CharactersRepository.swift
 //  RickAndMortyApp
 //
-//  Created by Pablo Romero on 29/3/26.
+//  Created by Pablo Romero on 30/3/26.
 //
-
-protocol CharactersRepositoryProtocol {
-    func fetchCharacters(
-        name: String?,
-        page: Int?
-    ) async throws -> Paginated<Character>
-}
 
 struct CharactersRepository {
     private let service: APIServiceProtocol

@@ -11,9 +11,10 @@ struct Character: Identifiable {
     let id: Int
     let name: String
     let type: String
-    let epidsode: [URL]
+    let episode: [URL]
     let image: URL?
     let content: URL?
+    let created: Date
 }
 
 extension Character: Hashable {

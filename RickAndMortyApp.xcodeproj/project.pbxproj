@@ -75,6 +75,11 @@
 			path = DI;
 			sourceTree = "<group>";
 		};
+		B1F5C7962F7B15F8004046A3 /* Mocks */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +110,7 @@
 		B1E9A0552F75E43B00CF608E = {
 			isa = PBXGroup;
 			children = (
+				B1F5C7962F7B15F8004046A3 /* Mocks */,
 				B1E9A1B02F79C5DD00CF608E /* DI */,
 				B1E9A14D2F79BDB300CF608E /* Presentation */,
 				B1E9A1242F79A30A00CF608E /* Domain */,
@@ -151,6 +157,7 @@
 				B1E9A1242F79A30A00CF608E /* Domain */,
 				B1E9A14D2F79BDB300CF608E /* Presentation */,
 				B1E9A1B02F79C5DD00CF608E /* DI */,
+				B1F5C7962F7B15F8004046A3 /* Mocks */,
 			);
 			name = RickAndMortyApp;
 			packageProductDependencies = (

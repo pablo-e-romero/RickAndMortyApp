@@ -37,9 +37,10 @@ struct CharacaterDto: Decodable {
                 id: id,
                 name: name,
                 type: type,
-                epidsode: episode,
+                episode: episode,
                 image: image,
-                content: url
+                content: url,
+                created: created
             )
         }
     }

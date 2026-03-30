@@ -67,6 +67,30 @@ struct LoadedView: View {
     }
 }
 
-//#Preview {
-//    CharactersListView()
-//}
+#Preview("Without more pages") {
+    LoadedView(
+        searchText: .constant(""),
+        displayModel: .init(
+            characters: [
+                .sample()
+            ],
+            hasMore: false
+        ),
+        fetchNextPage: {},
+        refresh: {}
+    )
+}
+
+#Preview("With more pages") {
+    LoadedView(
+        searchText: .constant(""),
+        displayModel: .init(
+            characters: [
+                .sample()
+            ],
+            hasMore: true
+        ),
+        fetchNextPage: {},
+        refresh: {}
+    )
+}
