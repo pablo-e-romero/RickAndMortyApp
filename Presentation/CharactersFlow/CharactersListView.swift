@@ -16,7 +16,10 @@ struct CharactersListView: View {
             case .idle, .loading:
                 Text("Loading")
             case let .loaded(displayModel):
-                LoadedView(displayModel: displayModel)
+                LoadedView(
+                    displayModel: displayModel,
+                    fetchNextPage: viewModel.fetchNextPage
+                )
             case let .error(error):
                 Text(error.localizedDescription)
             }
@@ -30,11 +33,24 @@ struct CharactersListView: View {
 
 struct LoadedView: View {
     let displayModel: CharactersListViewModel.DisplayModel
-    
+    let fetchNextPage: () async -> Void
+
     var body: some View {
-        List(displayModel.characters) { character in
-            NavigationLink(value: Route.detail(character)) {
-                Text(character.name)
+        List {
+            ForEach(displayModel.characters) { character in
+                NavigationLink(value: Route.detail(character)) {
+                    Text(character.name)
+                        .task {
+                            if character == displayModel.characters.last,
+                               displayModel.hasMore {
+                                await fetchNextPage()
+                            }
+                        }
+                }
+            }
+            if displayModel.hasMore {
+                ProgressView()
+                    .frame(maxWidth: .infinity, alignment: .center)
             }
         }
     }

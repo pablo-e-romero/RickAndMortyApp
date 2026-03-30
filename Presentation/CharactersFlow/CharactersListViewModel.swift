@@ -36,6 +36,11 @@ final class CharactersListViewModel {
     func onTask() async {
         await fetch()
     }
+    
+    func fetchNextPage() async {
+        guard let nextPage else { return }
+        await fetch(page: nextPage)
+    }
 }
 
 private extension CharactersListViewModel {
