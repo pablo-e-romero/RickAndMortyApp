@@ -18,7 +18,8 @@ struct CharactersListView: View {
             case let .loaded(displayModel):
                 LoadedView(
                     displayModel: displayModel,
-                    fetchNextPage: viewModel.fetchNextPage
+                    fetchNextPage: viewModel.fetchNextPage,
+                    refresh: { await viewModel.fetch() }
                 )
             case let .error(error):
                 Text(error.localizedDescription)
@@ -26,7 +27,7 @@ struct CharactersListView: View {
         }
         .navigationTitle("Characters")
         .task {
-            await viewModel.onTask()
+            await viewModel.fetch()
         }
     }
 }
@@ -34,6 +35,7 @@ struct CharactersListView: View {
 struct LoadedView: View {
     let displayModel: CharactersListViewModel.DisplayModel
     let fetchNextPage: () async -> Void
+    let refresh: () async -> Void
 
     var body: some View {
         List {
@@ -52,6 +54,9 @@ struct LoadedView: View {
                 ProgressView()
                     .frame(maxWidth: .infinity, alignment: .center)
             }
+        }
+        .refreshable {
+            await refresh()
         }
     }
 }

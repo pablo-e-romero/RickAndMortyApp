@@ -33,17 +33,6 @@ final class CharactersListViewModel {
         self.repository = repository
     }
     
-    func onTask() async {
-        await fetch()
-    }
-    
-    func fetchNextPage() async {
-        guard let nextPage else { return }
-        await fetch(page: nextPage)
-    }
-}
-
-private extension CharactersListViewModel {
     func fetch(name: String? = nil, page: Int = Page.firstPage) async {
         state.toLoading()
         
@@ -68,5 +57,10 @@ private extension CharactersListViewModel {
         } catch {
             state.toError(error)
         }
+    }
+    
+    func fetchNextPage() async {
+        guard let nextPage else { return }
+        await fetch(page: nextPage)
     }
 }
