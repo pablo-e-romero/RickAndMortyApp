@@ -12,7 +12,11 @@ extension Character {
         Character(
             id: 1,
             name: "Rick Sanchez",
-            type: "",
+            status: "Alive",
+            species: "Human",
+            gender: "Male",
+            origin: "Earth",
+            location: "Citadel of Ricks",
             episode: [
                 URL(string: "https://rickandmortyapi.com/api/episode/1")!,
                 URL(string: "https://rickandmortyapi.com/api/episode/2")!,

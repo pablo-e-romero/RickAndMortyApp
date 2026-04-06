@@ -26,7 +26,11 @@ struct CharacaterDto: Decodable {
     struct CharacterDto: Decodable {
         let id: Int
         let name: String
-        let type: String
+        let status: String
+        let species: String
+        let gender: String
+        let origin: OriginDto?
+        let location: LocationDto?
         let image: URL?
         let episode: [URL]
         let url: URL?
@@ -36,13 +40,25 @@ struct CharacaterDto: Decodable {
             .init(
                 id: id,
                 name: name,
-                type: type,
+                status: status,
+                species: species,
+                gender: gender,
+                origin: origin?.name,
+                location: location?.name,
                 episode: episode,
                 image: image,
                 content: url,
                 created: created
             )
         }
+    }
+ 
+    struct OriginDto: Decodable {
+        let name: String
+    }
+
+    struct LocationDto: Decodable {
+        let name: String
     }
 
     let info: PageDto

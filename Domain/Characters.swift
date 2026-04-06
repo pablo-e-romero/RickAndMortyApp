@@ -10,7 +10,11 @@ import Foundation
 struct Character: Identifiable {
     let id: Int
     let name: String
-    let type: String
+    let status: String
+    let species: String
+    let gender: String
+    let origin: String?
+    let location: String?
     let episode: [URL]
     let image: URL?
     let content: URL?
