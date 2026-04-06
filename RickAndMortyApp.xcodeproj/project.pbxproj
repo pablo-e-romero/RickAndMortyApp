@@ -38,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B12E79812F8445EE00C7C467 /* RickAndMortyKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RickAndMortyKit; sourceTree = "<group>"; };
 		B1E9A05E2F75E43B00CF608E /* RickAndMortyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMortyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1E9A06B2F75E43C00CF608E /* RickAndMortyAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RickAndMortyAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1E9A0752F75E43C00CF608E /* RickAndMortyAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RickAndMortyAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +101,7 @@
 		B1E9A0552F75E43B00CF608E = {
 			isa = PBXGroup;
 			children = (
+				B12E79812F8445EE00C7C467 /* RickAndMortyKit */,
 				B1E9A0602F75E43B00CF608E /* RickAndMortyApp */,
 				B1E9A06E2F75E43C00CF608E /* RickAndMortyAppTests */,
 				B1E9A0782F75E43C00CF608E /* RickAndMortyAppUITests */,
@@ -232,7 +234,6 @@
 			mainGroup = B1E9A0552F75E43B00CF608E;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				B10707CE2F8416420092B255 /* XCLocalSwiftPackageReference "RickAndMortyKit" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B1E9A05F2F75E43B00CF608E /* Products */;
@@ -617,13 +618,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCLocalSwiftPackageReference section */
-		B10707CE2F8416420092B255 /* XCLocalSwiftPackageReference "RickAndMortyKit" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = RickAndMortyKit;
-		};
-/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		B10707CF2F8416420092B255 /* Common */ = {
