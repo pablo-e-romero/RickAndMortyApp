@@ -8,12 +8,19 @@
 import Foundation
 
 protocol CharactersListViewModelFactory {
-    func makeCharactersListViewModel() -> CharactersListViewModel
+    func makeCharactersListViewModel(
+        selectedCharacter: @escaping (Character) -> Void
+    ) -> CharactersListViewModel
 }
 
 extension DependenciesContainer: CharactersListViewModelFactory {
-    func makeCharactersListViewModel() -> CharactersListViewModel {
-        CharactersListViewModel(repository: charactersRepository)
+    func makeCharactersListViewModel(
+        selectedCharacter: @escaping (Character) -> Void
+    ) -> CharactersListViewModel {
+        CharactersListViewModel(
+            repository: charactersRepository,
+            selectedCharacter: selectedCharacter
+        )
     }
 }
 
@@ -28,10 +35,15 @@ final class CharactersListViewModel {
     var searchText: String = ""
     
     private let repository: CharactersRepositoryProtocol
+    private let selectedCharacter: (Character) -> Void
     private var nextPage: Int?
 
-    init(repository: CharactersRepositoryProtocol) {
+    init(
+        repository: CharactersRepositoryProtocol,
+        selectedCharacter: @escaping (Character) -> Void
+    ) {
         self.repository = repository
+        self.selectedCharacter = selectedCharacter
     }
     
     func fetchFirstPage() async {
@@ -47,6 +59,10 @@ final class CharactersListViewModel {
         try? await Task.sleep(for: .milliseconds(300))
         guard !Task.isCancelled else { return }
         await fetch(name: text, page: Page.firstPage)
+    }
+    
+    func onCharacterSelected(_ character: Character) {
+        selectedCharacter(character)
     }
 }
 

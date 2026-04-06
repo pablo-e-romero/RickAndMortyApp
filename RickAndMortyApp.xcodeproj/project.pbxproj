@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		B1F5C79C2F7B175F004046A3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = B1F5C79B2F7B175F004046A3 /* Kingfisher */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		B1E9A06C2F75E43C00CF608E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -87,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1F5C79C2F7B175F004046A3 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,6 +166,7 @@
 			);
 			name = RickAndMortyApp;
 			packageProductDependencies = (
+				B1F5C79B2F7B175F004046A3 /* Kingfisher */,
 			);
 			productName = RickAndMortyApp;
 			productReference = B1E9A05E2F75E43B00CF608E /* RickAndMortyApp.app */;
@@ -244,6 +250,9 @@
 			);
 			mainGroup = B1E9A0552F75E43B00CF608E;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				B1F5C79A2F7B175F004046A3 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B1E9A05F2F75E43B00CF608E /* Products */;
 			projectDirPath = "";
@@ -627,6 +636,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B1F5C79A2F7B175F004046A3 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.8.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B1F5C79B2F7B175F004046A3 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B1F5C79A2F7B175F004046A3 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B1E9A0562F75E43B00CF608E /* Project object */;
 }

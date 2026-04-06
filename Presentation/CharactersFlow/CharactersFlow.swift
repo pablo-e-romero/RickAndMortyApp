@@ -20,7 +20,11 @@ struct CharactersFlow: View {
     var body: some View {
         NavigationStack(path: $route) {
             CharactersListView(
-                viewModel: depdendecies.makeCharactersListViewModel()
+                viewModel: depdendecies.makeCharactersListViewModel(
+                    selectedCharacter: { character in
+                        route.append(.detail(character))
+                    }
+                )
             )
             .navigationDestination(for: Route.self) { route in
                 switch route {
