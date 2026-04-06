@@ -2,7 +2,6 @@ import Foundation
 import Common
 import Domain
 
-@MainActor
 @Observable
 public final class CharactersListViewModel {
     public struct DisplayModel {

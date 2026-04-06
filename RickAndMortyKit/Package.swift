@@ -1,6 +1,11 @@
-// swift-tools-version: 6.0
+// swift-tools-version: 6.2
 
 import PackageDescription
+
+let swiftSettings: Array<SwiftSetting> = [
+    .swiftLanguageMode(.v6),
+    .defaultIsolation(MainActor.self)
+]
 
 let package = Package(
     name: "RickAndMortyKit",
@@ -18,21 +23,26 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "Common"
+            name: "Common",
+            swiftSettings: swiftSettings
         ),
         .target(
-            name: "Domain"
+            name: "Domain",
+            swiftSettings: swiftSettings
         ),
         .target(
-            name: "Networking"
+            name: "Networking",
+            swiftSettings: swiftSettings
         ),
         .target(
             name: "Data",
-            dependencies: ["Common", "Domain", "Networking"]
+            dependencies: ["Common", "Domain", "Networking"],
+            swiftSettings: swiftSettings
         ),
         .target(
             name: "Mocks",
-            dependencies: ["Domain"]
+            dependencies: ["Domain"],
+            swiftSettings: swiftSettings
         ),
         .target(
             name: "Presentation",
@@ -41,11 +51,13 @@ let package = Package(
                 "Domain",
                 "Mocks",
                 .product(name: "Kingfisher", package: "Kingfisher"),
-            ]
+            ],
+            swiftSettings: swiftSettings
         ),
         .testTarget(
             name: "PresentationTests",
-            dependencies: ["Presentation", "Common", "Domain", "Mocks"]
+            dependencies: ["Presentation", "Common", "Domain", "Mocks"],
+            swiftSettings: swiftSettings
         ),
     ]
 )

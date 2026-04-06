@@ -2,7 +2,7 @@ import Foundation
 import Domain
 
 public final class MockCharactersRepository: CharactersRepositoryProtocol, @unchecked Sendable {
-    public var result: Result<Paginated<Character>, Error> = .success(.empty)
+    public var result: Result<Paginated<Character>, Error>!
     public private(set) var fetchCallCount = 0
     public private(set) var lastRequestedName: String?
     public private(set) var lastRequestedPage: Int?
