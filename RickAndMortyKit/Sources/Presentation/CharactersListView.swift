@@ -1,4 +1,5 @@
 import SwiftUI
+import Kingfisher
 import Domain
 
 struct CharactersListView: View {
@@ -8,55 +9,212 @@ struct CharactersListView: View {
         Group {
             switch viewModel.state {
             case .idle, .loading:
-                Text("Loading")
+                LoadingView()
             case let .loaded(displayModel):
                 LoadedView(
                     searchText: $viewModel.searchText,
                     displayModel: displayModel,
+                    characterSelected: viewModel.onCharacterSelected,
                     fetchNextPage: viewModel.fetchNextPage,
                     refresh: viewModel.fetchFirstPage
                 )
-            case let .error(error):
-                Text(error.localizedDescription)
+            case .error:
+                ErrorView(retry: viewModel.fetchFirstPage)
             }
         }
         .navigationTitle("Characters")
-        .task {
-            await viewModel.fetchFirstPage()
-        }
         .task(id: viewModel.searchText) {
             await viewModel.onSearch(viewModel.searchText)
         }
     }
 }
 
+// MARK - Loading
+
+private struct LoadingView: View {
+    var body: some View {
+        ScrollView {
+            LazyVStack(spacing: 0) {
+                ForEach(0..<4) { _ in
+                    LoadingRowView()
+                }
+            }
+        }
+    }
+}
+
+private struct LoadingRowView: View {
+    var body: some View {
+        ZStack(alignment: .topLeading) {
+            RoundedRectangle(cornerRadius: 8)
+                .fill(.tertiary)
+                .aspectRatio(contentMode: .fill)
+       
+            Text("redacted.name")
+                .font(.title3)
+                .foregroundStyle(.primary)
+                .padding(6)
+                .background(
+                    Material.thin,
+                    in: RoundedRectangle(
+                        cornerRadius: 8,
+                        style: .continuous
+                    )
+                )
+                .padding(6)
+        }
+        .padding(EdgeInsets(top: 3, leading: 6, bottom: 3, trailing: 6))
+        .redacted(reason: .placeholder)
+    }
+}
+
+// MARK - Loaded
+
 struct LoadedView: View {
     @Binding var searchText: String
     let displayModel: CharactersListViewModel.DisplayModel
+    let characterSelected: (Character) -> Void
     let fetchNextPage: () async -> Void
     let refresh: () async -> Void
 
     var body: some View {
-        List {
-            ForEach(displayModel.characters) { character in
-                NavigationLink(value: Route.detail(character)) {
-                    Text(character.name)
-                        .task {
-                            if character == displayModel.characters.last,
-                               displayModel.hasMore {
-                                await fetchNextPage()
-                            }
+        Group {
+            if displayModel.characters.isEmpty {
+                Text("No characters found")
+            } else {
+                ScrollView {
+                    LazyVStack(spacing: 0) {
+                        ForEach(displayModel.characters) { character in
+                            RowView(character: character)
+                                .onTapGesture {
+                                    characterSelected(character)
+                                }
+                                .task {
+                                    if character == displayModel.characters.last,
+                                       displayModel.hasMore {
+                                        await fetchNextPage()
+                                    }
+                                }
+                            
                         }
+                        if displayModel.hasMore {
+                            ProgressView()
+                                .frame(maxWidth: .infinity, alignment: .center)
+                        }
+                    }
                 }
-            }
-            if displayModel.hasMore {
-                ProgressView()
-                    .frame(maxWidth: .infinity, alignment: .center)
+                .refreshable { await refresh() }
             }
         }
         .searchable(text: $searchText)
-        .refreshable {
-            await refresh()
+    }
+}
+
+private struct RowView: View {
+    let character: Character
+
+    var body: some View {
+        ZStack(alignment: .topLeading) {
+            KFImage.url(character.image)
+                .placeholder {
+                    ProgressView()
+                }
+                .resizable()
+                .scaledToFill()
+                .cornerRadius(8)
+       
+            Text(character.name)
+                .font(.title3)
+                .foregroundStyle(.primary)
+                .padding(6)
+                .background(
+                    Material.thin,
+                    in: RoundedRectangle(
+                        cornerRadius: 8,
+                        style: .continuous
+                    )
+                )
+                .padding(6)
         }
+        .padding(EdgeInsets(top: 3, leading: 6, bottom: 3, trailing: 6))
+    }
+}
+
+// MARK - Error
+
+private struct ErrorView: View {
+    let retry: () async -> Void
+    var body: some View {
+        VStack(spacing: 16) {
+            Text("There was an error loading characters")
+            Button("Retry") {
+                Task { await retry() }
+            }
+        }
+    }
+}
+
+// MARK - Previews
+        
+#Preview("Without more pages") {
+    NavigationStack {
+        LoadedView(
+            searchText: .constant(""),
+            displayModel: .init(
+                characters: [.rick()],
+                hasMore: false
+            ),
+            characterSelected: { _ in },
+            fetchNextPage: {},
+            refresh: {}
+        )
+        .navigationTitle("Characters")
+    }
+}
+
+#Preview("With more pages") {
+    NavigationStack {
+        LoadedView(
+            searchText: .constant(""),
+            displayModel: .init(
+                characters: [.rick()],
+                hasMore: true
+            ),
+            characterSelected: { _ in },
+            fetchNextPage: {},
+            refresh: {}
+        )
+        .navigationTitle("Characters")
+    }
+}
+
+
+#Preview("Empty") {
+    NavigationStack {
+        LoadedView(
+            searchText: .constant(""),
+            displayModel: .init(
+                characters: [],
+                hasMore: false
+            ),
+            characterSelected: { _ in },
+            fetchNextPage: {},
+            refresh: {}
+        )
+        .navigationTitle("Characters")
+    }
+}
+
+#Preview("Loading") {
+    NavigationStack {
+        LoadingView()
+            .navigationTitle("Characters")
+    }
+}
+
+#Preview("Error") {
+    NavigationStack {
+        ErrorView(retry: {})
+            .navigationTitle("Characters")
     }
 }
