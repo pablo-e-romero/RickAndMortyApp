@@ -1,13 +1,6 @@
-//
-//  URL+.swift
-//  RickAndMortyApp
-//
-//  Created by Pablo Romero on 29/3/26.
-//
-
 import Foundation
 
-extension URL {
+public extension URL {
     func getQueryItemValue(_ name: String) -> String? {
         guard
             let components = URLComponents(url: self, resolvingAgainstBaseURL: false),

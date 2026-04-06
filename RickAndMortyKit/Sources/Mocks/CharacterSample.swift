@@ -1,13 +1,7 @@
-//
-//  CharacterSample.swift
-//  RickAndMortyApp
-//
-//  Created by Pablo Romero on 30/3/26.
-//
-
 import Foundation
+import Domain
 
-extension Character {
+public extension Character {
     static func sample() -> Self {
         Character(
             id: 1,

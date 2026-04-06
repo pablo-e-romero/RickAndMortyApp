@@ -6,10 +6,14 @@
 //
 
 import Foundation
+import Data
+import Domain
+import Networking
+import Presentation
 
 final class DependenciesContainer {
     let charactersRepository: CharactersRepository
-    
+
     init(charactersRepository: CharactersRepository) {
         self.charactersRepository = charactersRepository
     }
@@ -24,15 +28,20 @@ extension DependenciesContainer {
             baseURL: RicketAndMortyAPIConstants.baseURL,
             decoder: decoder
         )
-        
+
         return .init(
             charactersRepository: CharactersRepository(service: apiService)
         )
     }
 }
 
-protocol HasCharactersRepository {
-    var charactersRepository: CharactersRepository { get }
+extension DependenciesContainer: CharactersListViewModelFactory {
+    func makeCharactersListViewModel(
+        selectedCharacter: @escaping (Character) -> Void
+    ) -> CharactersListViewModel {
+        CharactersListViewModel(
+            repository: charactersRepository,
+            selectedCharacter: selectedCharacter
+        )
+    }
 }
-
-extension DependenciesContainer: HasCharactersRepository { }

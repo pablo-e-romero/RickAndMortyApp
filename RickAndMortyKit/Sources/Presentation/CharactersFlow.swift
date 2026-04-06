@@ -1,26 +1,29 @@
-//
-//  CharactersFlow.swift
-//  RickAndMortyApp
-//
-//  Created by Pablo Romero on 29/3/26.
-//
-
 import SwiftUI
+import Domain
 
-enum Route: Hashable {
+public enum Route: Hashable {
     case detail(Character)
 }
 
-struct CharactersFlow: View {
-    typealias Dependencies = CharactersListViewModelFactory
-    let depdendecies: Dependencies
+public protocol CharactersListViewModelFactory {
+    func makeCharactersListViewModel(
+        selectedCharacter: @escaping (Character) -> Void
+    ) -> CharactersListViewModel
+}
+
+public struct CharactersFlow<Dependencies: CharactersListViewModelFactory>: View {
+    let dependencies: Dependencies
 
     @SwiftUI.State var route: [Route] = []
 
-    var body: some View {
+    public init(dependencies: Dependencies) {
+        self.dependencies = dependencies
+    }
+
+    public var body: some View {
         NavigationStack(path: $route) {
             CharactersListView(
-                viewModel: depdendecies.makeCharactersListViewModel(
+                viewModel: dependencies.makeCharactersListViewModel(
                     selectedCharacter: { character in
                         route.append(.detail(character))
                     }

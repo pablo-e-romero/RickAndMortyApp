@@ -1,18 +1,16 @@
-//
-//  APIEndpoint.swift
-//  RickAndMortyApp
-//
-//  Created by Pablo Romero on 29/3/26.
-//
-
 import Foundation
 
-struct APIEndpoint<Response: Decodable> {
-    let path: String
-    let queryParams: [String: CustomStringConvertible]
+public struct APIEndpoint<Response: Decodable> {
+    public let path: String
+    public let queryParams: [String: CustomStringConvertible]
+
+    public init(path: String, queryParams: [String: CustomStringConvertible]) {
+        self.path = path
+        self.queryParams = queryParams
+    }
 }
 
-extension APIEndpoint {
+public extension APIEndpoint {
     func urlRequest(baseURL: URL) -> URLRequest {
         guard var urlComponents = URLComponents(
             url: baseURL,
@@ -20,16 +18,16 @@ extension APIEndpoint {
         ) else {
             fatalError("Error initalizing URLBuilder")
         }
-        
+
         urlComponents.path.append(path)
         urlComponents.queryItems = queryParams.map { (key, value) in
             URLQueryItem(name: key, value: value.description)
         }
-        
+
         guard let url = urlComponents.url else {
             fatalError("Error buidling URL")
         }
-        
+
         return URLRequest(url: url)
     }
 }

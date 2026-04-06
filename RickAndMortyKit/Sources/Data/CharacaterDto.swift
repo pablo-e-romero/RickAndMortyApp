@@ -1,28 +1,24 @@
-//
-//  CharacaterDto.swift
-//  RickAndMortyApp
-//
-//  Created by Pablo Romero on 29/3/26.
-//
-
 import Foundation
+import Common
+import Domain
+import Networking
 
 struct CharacaterDto: Decodable {
     struct PageDto: Decodable {
         let count: Int
         let pages: Int
         let next: URL?
-        
+
         func toDomain() -> Page {
             let nextPage: Int? = next?.getQueryItemValue("page").flatMap { Int($0) }
-            
+
             return Page(
                 hasMore: nextPage != nil,
                 nextPage: nextPage
             )
         }
     }
-    
+
     struct CharacterDto: Decodable {
         let id: Int
         let name: String
@@ -35,7 +31,7 @@ struct CharacaterDto: Decodable {
         let episode: [URL]
         let url: URL?
         let created: Date
-        
+
         func toDomain() -> Character {
             .init(
                 id: id,
@@ -52,7 +48,7 @@ struct CharacaterDto: Decodable {
             )
         }
     }
- 
+
     struct OriginDto: Decodable {
         let name: String
     }
@@ -63,7 +59,7 @@ struct CharacaterDto: Decodable {
 
     let info: PageDto
     let results: [CharacterDto]
-    
+
     func toDomain() -> Paginated<Character> {
         .init(
             page: info.toDomain(),

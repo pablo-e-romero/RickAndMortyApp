@@ -7,7 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B1F5C79C2F7B175F004046A3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = B1F5C79B2F7B175F004046A3 /* Kingfisher */; };
+		B10707D02F8416420092B255 /* Common in Frameworks */ = {isa = PBXBuildFile; productRef = B10707CF2F8416420092B255 /* Common */; };
+		B10707D22F8416420092B255 /* Data in Frameworks */ = {isa = PBXBuildFile; productRef = B10707D12F8416420092B255 /* Data */; };
+		B10707D42F8416420092B255 /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = B10707D32F8416420092B255 /* Domain */; };
+		B10707D62F8416420092B255 /* Mocks in Frameworks */ = {isa = PBXBuildFile; productRef = B10707D52F8416420092B255 /* Mocks */; };
+		B10707D82F8416420092B255 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = B10707D72F8416420092B255 /* Networking */; };
+		B1A2C3D42F7C000000000008 /* Common in Frameworks */ = {isa = PBXBuildFile; productRef = B1A2C3D42F7C000000000002 /* Common */; };
+		B1A2C3D42F7C000000000009 /* Data in Frameworks */ = {isa = PBXBuildFile; productRef = B1A2C3D42F7C000000000003 /* Data */; };
+		B1A2C3D42F7C00000000000A /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = B1A2C3D42F7C000000000004 /* Domain */; };
+		B1A2C3D42F7C00000000000B /* Mocks in Frameworks */ = {isa = PBXBuildFile; productRef = B1A2C3D42F7C000000000005 /* Mocks */; };
+		B1A2C3D42F7C00000000000C /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = B1A2C3D42F7C000000000006 /* Networking */; };
+		B1A2C3D42F7C00000000000D /* Presentation in Frameworks */ = {isa = PBXBuildFile; productRef = B1A2C3D42F7C000000000007 /* Presentation */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +66,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1F5C79C2F7B175F004046A3 /* Kingfisher in Frameworks */,
+				B10707D62F8416420092B255 /* Mocks in Frameworks */,
+				B1A2C3D42F7C000000000008 /* Common in Frameworks */,
+				B1A2C3D42F7C000000000009 /* Data in Frameworks */,
+				B1A2C3D42F7C00000000000A /* Domain in Frameworks */,
+				B1A2C3D42F7C00000000000B /* Mocks in Frameworks */,
+				B10707D02F8416420092B255 /* Common in Frameworks */,
+				B1A2C3D42F7C00000000000C /* Networking in Frameworks */,
+				B10707D42F8416420092B255 /* Domain in Frameworks */,
+				B10707D22F8416420092B255 /* Data in Frameworks */,
+				B1A2C3D42F7C00000000000D /* Presentation in Frameworks */,
+				B10707D82F8416420092B255 /* Networking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,7 +137,17 @@
 			);
 			name = RickAndMortyApp;
 			packageProductDependencies = (
-				B1F5C79B2F7B175F004046A3 /* Kingfisher */,
+				B1A2C3D42F7C000000000002 /* Common */,
+				B1A2C3D42F7C000000000003 /* Data */,
+				B1A2C3D42F7C000000000004 /* Domain */,
+				B1A2C3D42F7C000000000005 /* Mocks */,
+				B1A2C3D42F7C000000000006 /* Networking */,
+				B1A2C3D42F7C000000000007 /* Presentation */,
+				B10707CF2F8416420092B255 /* Common */,
+				B10707D12F8416420092B255 /* Data */,
+				B10707D32F8416420092B255 /* Domain */,
+				B10707D52F8416420092B255 /* Mocks */,
+				B10707D72F8416420092B255 /* Networking */,
 			);
 			productName = RickAndMortyApp;
 			productReference = B1E9A05E2F75E43B00CF608E /* RickAndMortyApp.app */;
@@ -202,7 +232,7 @@
 			mainGroup = B1E9A0552F75E43B00CF608E;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				B1F5C79A2F7B175F004046A3 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				B10707CE2F8416420092B255 /* XCLocalSwiftPackageReference "RickAndMortyKit" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B1E9A05F2F75E43B00CF608E /* Products */;
@@ -588,22 +618,57 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		B1F5C79A2F7B175F004046A3 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:onevcat/Kingfisher.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 8.8.0;
-			};
+/* Begin XCLocalSwiftPackageReference section */
+		B10707CE2F8416420092B255 /* XCLocalSwiftPackageReference "RickAndMortyKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = RickAndMortyKit;
 		};
-/* End XCRemoteSwiftPackageReference section */
+/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B1F5C79B2F7B175F004046A3 /* Kingfisher */ = {
+		B10707CF2F8416420092B255 /* Common */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B1F5C79A2F7B175F004046A3 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
+			productName = Common;
+		};
+		B10707D12F8416420092B255 /* Data */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Data;
+		};
+		B10707D32F8416420092B255 /* Domain */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Domain;
+		};
+		B10707D52F8416420092B255 /* Mocks */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Mocks;
+		};
+		B10707D72F8416420092B255 /* Networking */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Networking;
+		};
+		B1A2C3D42F7C000000000002 /* Common */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Common;
+		};
+		B1A2C3D42F7C000000000003 /* Data */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Data;
+		};
+		B1A2C3D42F7C000000000004 /* Domain */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Domain;
+		};
+		B1A2C3D42F7C000000000005 /* Mocks */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Mocks;
+		};
+		B1A2C3D42F7C000000000006 /* Networking */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Networking;
+		};
+		B1A2C3D42F7C000000000007 /* Presentation */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Presentation;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

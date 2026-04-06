@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Presentation
 
 @main
 struct RickAndMortyAppApp: App {
@@ -13,7 +14,7 @@ struct RickAndMortyAppApp: App {
 
     var body: some Scene {
         WindowGroup {
-            CharactersFlow(depdendecies: Self.dependencies)
+            CharactersFlow(dependencies: Self.dependencies)
         }
     }
 }
