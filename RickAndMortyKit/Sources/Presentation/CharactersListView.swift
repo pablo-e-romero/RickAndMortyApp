@@ -40,6 +40,8 @@ private struct LoadingView: View {
                 }
             }
         }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("Loading characters")
     }
 }
 
@@ -85,11 +87,13 @@ struct LoadedView: View {
                 ScrollView {
                     LazyVStack(spacing: 0) {
                         ForEach(displayModel.characters) { character in
-                            RowView(character: character)
-                                .onTapGesture {
-                                    characterSelected(character)
-                                }
-                                .task {
+                            Button {
+                                characterSelected(character)
+                            } label: {
+                                RowView(character: character)
+                            }
+                            .buttonStyle(.plain)
+                            .task {
                                     if character == displayModel.characters.last,
                                        displayModel.hasMore {
                                         await fetchNextPage()
@@ -100,6 +104,7 @@ struct LoadedView: View {
                         if displayModel.hasMore {
                             ProgressView()
                                 .frame(maxWidth: .infinity, alignment: .center)
+                                .accessibilityLabel("Loading more characters")
                         }
                     }
                 }
@@ -137,6 +142,8 @@ private struct RowView: View {
                 .padding(6)
         }
         .padding(EdgeInsets(top: 3, leading: 6, bottom: 3, trailing: 6))
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("\(character.name), \(character.species), \(character.status)")
     }
 }
 

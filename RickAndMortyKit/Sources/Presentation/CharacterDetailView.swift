@@ -17,27 +17,32 @@ struct CharacterDetailView: View {
                     .scaledToFit()
                     .cornerRadius(8)
                     .padding(6)
+                    .accessibilityLabel("Portrait of \(character.name)")
 
                 Grid(alignment: .leading) {
                     GridRow {
                         gridRowName("Status")
                         gridRowContent(character.status)
                     }
+                    .accessibilityElement(children: .combine)
                     GridRow {
                         gridRowName("Species")
                         gridRowContent(character.species)
                     }
+                    .accessibilityElement(children: .combine)
 
                     GridRow {
                         gridRowName("Gender")
                         gridRowContent(character.gender)
                     }
+                    .accessibilityElement(children: .combine)
 
                     if let origin = character.origin {
                         GridRow {
                             gridRowName("Origin")
                             gridRowContent(origin)
                         }
+                        .accessibilityElement(children: .combine)
                     }
 
                     if let location = character.location {
@@ -45,6 +50,7 @@ struct CharacterDetailView: View {
                             gridRowName("Location")
                             gridRowContent(location)
                         }
+                        .accessibilityElement(children: .combine)
                     }
                 }
                 .padding(6)
