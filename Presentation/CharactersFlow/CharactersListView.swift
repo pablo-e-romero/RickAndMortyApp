@@ -10,7 +10,7 @@ import Kingfisher
 
 struct CharactersListView: View {
     @Bindable var viewModel: CharactersListViewModel
-    
+
     var body: some View {
         Group {
             switch viewModel.state {
@@ -102,7 +102,6 @@ private struct LoadedView: View {
                                         await fetchNextPage()
                                     }
                                 }
-                            
                         }
                         if displayModel.hasMore {
                             ProgressView()
