@@ -50,16 +50,6 @@
 			path = RickAndMortyApp;
 			sourceTree = "<group>";
 		};
-		B1E9A06E2F75E43C00CF608E /* RickAndMortyAppTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = RickAndMortyAppTests;
-			sourceTree = "<group>";
-		};
-		B1E9A0782F75E43C00CF608E /* RickAndMortyAppUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = RickAndMortyAppUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,8 +93,6 @@
 			children = (
 				B12E79812F8445EE00C7C467 /* RickAndMortyKit */,
 				B1E9A0602F75E43B00CF608E /* RickAndMortyApp */,
-				B1E9A06E2F75E43C00CF608E /* RickAndMortyAppTests */,
-				B1E9A0782F75E43C00CF608E /* RickAndMortyAppUITests */,
 				B1E9A05F2F75E43B00CF608E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -168,9 +156,6 @@
 			dependencies = (
 				B1E9A06D2F75E43C00CF608E /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				B1E9A06E2F75E43C00CF608E /* RickAndMortyAppTests */,
-			);
 			name = RickAndMortyAppTests;
 			packageProductDependencies = (
 			);
@@ -190,9 +175,6 @@
 			);
 			dependencies = (
 				B1E9A0772F75E43C00CF608E /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				B1E9A0782F75E43C00CF608E /* RickAndMortyAppUITests */,
 			);
 			name = RickAndMortyAppUITests;
 			packageProductDependencies = (
