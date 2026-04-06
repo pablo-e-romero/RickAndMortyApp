@@ -2,7 +2,7 @@ import Foundation
 import Domain
 
 public extension Character {
-    static func sample() -> Self {
+    static func rick() -> Self {
         Character(
             id: 1,
             name: "Rick Sanchez",
@@ -21,5 +21,21 @@ public extension Character {
             content: URL(string: "https://rickandmortyapi.com/api/character/1")!,
             created: Date()
         )
+    }
+    
+    static func morty() -> Self {
+        Character(
+           id: 2,
+           name: "Morty Smith",
+           status: "Alive",
+           species: "Human",
+           gender: "Male",
+           origin: "Earth",
+           location: "Earth",
+           episode: [],
+           image: nil,
+           content: nil,
+           created: Date()
+       )
     }
 }

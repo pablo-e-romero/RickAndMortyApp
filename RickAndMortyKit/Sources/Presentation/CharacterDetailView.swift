@@ -67,6 +67,6 @@ struct CharacterDetailView: View {
 
 #Preview {
     NavigationStack {
-        CharacterDetailView(character: .sample())
+        CharacterDetailView(character: .rick())
     }
 }

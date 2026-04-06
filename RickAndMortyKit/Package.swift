@@ -1,10 +1,10 @@
-// swift-tools-version: 6.2
+// swift-tools-version: 6.0
 
 import PackageDescription
 
 let package = Package(
     name: "RickAndMortyKit",
-    platforms: [.iOS(.v17)],
+    platforms: [.iOS(.v17), .macOS(.v14)],
     products: [
         .library(name: "Common", targets: ["Common"]),
         .library(name: "Domain", targets: ["Domain"]),
@@ -42,6 +42,10 @@ let package = Package(
                 "Mocks",
                 .product(name: "Kingfisher", package: "Kingfisher"),
             ]
+        ),
+        .testTarget(
+            name: "PresentationTests",
+            dependencies: ["Presentation", "Common", "Domain", "Mocks"]
         ),
     ]
 )
