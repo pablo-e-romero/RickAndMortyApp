@@ -5,13 +5,8 @@ public enum Route: Hashable {
     case detail(Character)
 }
 
-public protocol CharactersListViewModelFactory {
-    func makeCharactersListViewModel(
-        selectedCharacter: @escaping (Character) -> Void
-    ) -> CharactersListViewModel
-}
-
-public struct CharactersFlow<Dependencies: CharactersListViewModelFactory>: View {
+public struct CharactersFlow: View {
+    public typealias Dependencies = CharactersListViewModelFactory
     let dependencies: Dependencies
 
     @SwiftUI.State var route: [Route] = []
