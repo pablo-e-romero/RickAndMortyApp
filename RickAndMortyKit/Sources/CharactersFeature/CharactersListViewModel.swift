@@ -2,12 +2,6 @@ import Foundation
 import Common
 import Domain
 
-public protocol CharactersListViewModelFactory {
-    func makeCharactersListViewModel(
-        selectedCharacter: @escaping (Character) -> Void
-    ) -> CharactersListViewModel
-}
-
 @Observable
 public final class CharactersListViewModel {
     struct DisplayModel {

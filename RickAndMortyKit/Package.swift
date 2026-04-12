@@ -17,6 +17,7 @@ let package = Package(
         .library(name: "Data", targets: ["Data"]),
         .library(name: "Mocks", targets: ["Mocks"]),
         .library(name: "CharactersFeature", targets: ["CharactersFeature"]),
+        .library(name: "PictureFeature", targets: ["PictureFeature"]),
     ],
     dependencies: [
         .package(url: "https://github.com/onevcat/Kingfisher.git", from: "8.0.0"),
@@ -50,6 +51,15 @@ let package = Package(
                 "Common",
                 "Domain",
                 "Mocks",
+                .product(name: "Kingfisher", package: "Kingfisher"),
+            ],
+            swiftSettings: swiftSettings
+        ),
+        .target(
+            name: "PictureFeature",
+            dependencies: [
+                "Common",
+                "Domain",
                 .product(name: "Kingfisher", package: "Kingfisher"),
             ],
             swiftSettings: swiftSettings

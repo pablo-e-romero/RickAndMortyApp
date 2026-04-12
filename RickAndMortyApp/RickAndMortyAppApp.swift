@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Presentation
+import CharactersFeature
 
 @main
 struct RickAndMortyAppApp: App {
@@ -14,7 +14,9 @@ struct RickAndMortyAppApp: App {
 
     var body: some Scene {
         WindowGroup {
-            CharactersFlow(dependencies: Self.dependencies)
+            CharactersFlow(
+                dependencies: .make(with: .live)
+            )
         }
     }
 }

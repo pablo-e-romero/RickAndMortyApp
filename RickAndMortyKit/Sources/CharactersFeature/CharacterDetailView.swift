@@ -5,19 +5,25 @@ import Mocks
 
 struct CharacterDetailView: View {
     let character: Character
-
+    let pictureSelected: (Character) -> Void
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                KFImage.url(character.image)
-                    .placeholder {
-                        ProgressView()
-                    }
-                    .resizable()
-                    .scaledToFit()
-                    .cornerRadius(8)
-                    .padding(6)
-                    .accessibilityLabel("Portrait of \(character.name)")
+                Button {
+                    pictureSelected(character)
+                } label: {
+                    KFImage.url(character.image)
+                        .placeholder {
+                            ProgressView()
+                        }
+                        .resizable()
+                        .scaledToFit()
+                        .cornerRadius(8)
+                        .padding(6)
+                        .accessibilityLabel("Portrait of \(character.name)")
+                }
+                .buttonStyle(.plain)
 
                 Grid(alignment: .leading) {
                     GridRow {
@@ -73,6 +79,9 @@ struct CharacterDetailView: View {
 
 #Preview {
     NavigationStack {
-        CharacterDetailView(character: .rick())
+        CharacterDetailView(
+            character: .rick(),
+            pictureSelected: { _ in }
+        )
     }
 }

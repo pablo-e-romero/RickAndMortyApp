@@ -9,7 +9,9 @@ import Foundation
 import Data
 import Domain
 import Networking
-import Presentation
+
+import CharactersFeature
+import PictureFeature
 
 final class DependenciesContainer {
     let charactersRepository: CharactersRepository
@@ -35,13 +37,21 @@ extension DependenciesContainer {
     }
 }
 
-extension DependenciesContainer: CharactersListViewModelFactory {
-    func makeCharactersListViewModel(
-        selectedCharacter: @escaping (Character) -> Void
-    ) -> CharactersListViewModel {
-        CharactersListViewModel(
-            repository: charactersRepository,
-            selectedCharacter: selectedCharacter
+extension CharactersFeature.DependenciesContainer where PictureDetailView == PictureFeature.PictureDetailView {
+    static func make(with dependenciesContainer: DependenciesContainer) -> Self {
+        .init(
+            pictureDetailViewProvider: { url, accessibilityLabel in
+                PictureDetailView(
+                    url: url,
+                    accessibilityLabel: accessibilityLabel
+                )
+            },
+            charactersListViewModelProvider: { selectedCharacter in
+                CharactersListViewModel(
+                    repository: dependenciesContainer.charactersRepository,
+                    selectedCharacter: selectedCharacter
+                )
+            }
         )
     }
 }
