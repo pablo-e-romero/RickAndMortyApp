@@ -1,6 +1,7 @@
 import Testing
 import Common
 import Foundation
+import Clocks
 import CharactersCore
 import CharactersCoreMocks
 @testable import CharactersFeature
@@ -8,12 +9,20 @@ import CharactersCoreMocks
 @MainActor
 @Suite("CharactersListViewModel")
 struct CharactersListViewModelTests {
-
+    var repository: MockCharactersRepository!
+    var clock: ImmediateClock<Duration>!
+    
     // MARK: - Initial state
+    
+    init() {
+        self.repository = MockCharactersRepository()
+        self.repository.result = .success(.empty)
+        self.clock = ImmediateClock()
+    }
 
     @Test("Initial state is idle")
     func initialStateIsIdle() {
-        let (sut, _) = makeSUT()
+        let sut = makeSUT()
         guard case .idle = sut.state else {
             Issue.record("Expected idle state, got \(sut.state)")
             return
@@ -29,7 +38,8 @@ struct CharactersListViewModelTests {
             page: Page(hasMore: false, nextPage: nil),
             results: characters
         )
-        let (sut, repository) = makeSUT(result: .success(paginated))
+        repository.result = .success(paginated)
+        let sut = makeSUT()
 
         await sut.fetchFirstPage()
 
@@ -45,20 +55,11 @@ struct CharactersListViewModelTests {
         #expect(displayModel.hasMore == false)
     }
 
-    @Test("fetchFirstPage passes search text as name parameter")
-    func fetchFirstPagePassesSearchText() async {
-        let (sut, repository) = makeSUT()
-        sut.searchText = "Morty"
-
-        await sut.fetchFirstPage()
-
-        #expect(repository.lastRequestedName == "Morty")
-    }
-
     @Test("fetchFirstPage sets error state on failure")
     func fetchFirstPageError() async {
         let expectedError = URLError(.notConnectedToInternet)
-        let (sut, _) = makeSUT(result: .failure(expectedError))
+        repository.result = .failure(expectedError)
+        let sut = makeSUT()
 
         await sut.fetchFirstPage()
 
@@ -76,7 +77,8 @@ struct CharactersListViewModelTests {
             page: Page(hasMore: false, nextPage: nil),
             results: [.rick()]
         )
-        let (sut, repository) = makeSUT(result: .success(paginated))
+        repository.result = .success(paginated)
+        let sut = makeSUT()
 
         // Load first page (no next page)
         await sut.fetchFirstPage()
@@ -97,7 +99,8 @@ struct CharactersListViewModelTests {
             page: Page(hasMore: true, nextPage: 2),
             results: [rick]
         )
-        let (sut, repository) = makeSUT(result: .success(firstPage))
+        repository.result = .success(firstPage)
+        let sut = makeSUT()
 
         await sut.fetchFirstPage()
 
@@ -133,7 +136,9 @@ struct CharactersListViewModelTests {
             page: Page(hasMore: true, nextPage: 2),
             results: [rick]
         )
-        let (sut, repository) = makeSUT(result: .success(firstPage))
+        repository.result = .success(firstPage)
+        let sut = makeSUT()
+        
         await sut.fetchFirstPage()
 
         // Fetch next page
@@ -165,7 +170,7 @@ struct CharactersListViewModelTests {
     @Test("onCharacterSelected invokes callback with character")
     func onCharacterSelectedCallsCallback() {
         var selectedCharacter: Character?
-        let (sut, _) = makeSUT(selectedCharacter: { selectedCharacter = $0 })
+        let sut = makeSUT(selectedCharacter: { selectedCharacter = $0 })
 
         let character = Character.rick()
         sut.onCharacterSelected(character)
@@ -173,16 +178,41 @@ struct CharactersListViewModelTests {
         #expect(selectedCharacter?.id == character.id)
     }
     
-    private func makeSUT(
-        result: Result<Paginated<Character>, Error> = .success(.empty),
-        selectedCharacter: @escaping (Character) -> Void = { _ in }
-    ) -> (CharactersListViewModel, MockCharactersRepository) {
-        let repository = MockCharactersRepository()
-        repository.result = result
-        let viewModel = CharactersListViewModel(
-            repository: repository,
-            selectedCharacter: selectedCharacter
+    // MARK: - onSearch
+    
+    @Test("onSearch loads characters and sets loaded state")
+    func onSearch() async {
+        let characters: [Character] = [.rick(), .morty()]
+        let paginated = Paginated(
+            page: Page(hasMore: false, nextPage: nil),
+            results: characters
         )
-        return (viewModel, repository)
+        repository.result = .success(paginated)
+        let sut = makeSUT()
+
+        await sut.onSearch("Rick")
+
+        #expect(repository.fetchCallCount == 1)
+        #expect(repository.lastRequestedName == "Rick")
+        #expect(repository.lastRequestedPage == Page.firstPage)
+
+        guard case let .loaded(displayModel) = sut.state else {
+            Issue.record("Expected loaded state")
+            return
+        }
+        #expect(displayModel.characters.count == 2)
+        #expect(displayModel.hasMore == false)
+    }
+    
+    // MARK: - SUT
+    
+    private func makeSUT(
+        selectedCharacter: @escaping (Character) -> Void = { _ in }
+    ) -> CharactersListViewModel {
+        CharactersListViewModel(
+            repository: repository,
+            selectedCharacter: selectedCharacter,
+//            clock: clock
+        )
     }
 }

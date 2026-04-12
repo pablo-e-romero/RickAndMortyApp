@@ -15,7 +15,9 @@ public final class CharactersListViewModel {
     }
 
     var state: State<DisplayModel> = .idle
-    var searchText: String = ""
+    private var searchText: String = ""
+
+    private let clock: any Clock<Duration>
 
     private let repository: CharactersRepositoryProtocol
     private let selectedCharacter: (Character) -> Void
@@ -23,10 +25,12 @@ public final class CharactersListViewModel {
 
     public init(
         repository: CharactersRepositoryProtocol,
-        selectedCharacter: @escaping (Character) -> Void
+        selectedCharacter: @escaping (Character) -> Void,
+        clock: any Clock<Duration> = ContinuousClock(),
     ) {
         self.repository = repository
         self.selectedCharacter = selectedCharacter
+        self.clock = clock
     }
 
     func fetchFirstPage() async {
@@ -39,7 +43,7 @@ public final class CharactersListViewModel {
     }
 
     func onSearch(_ text: String) async {
-        try? await Task.sleep(for: .milliseconds(300))
+        try? await clock.sleep(for: .microseconds(300))
         guard !Task.isCancelled else { return }
         await fetch(name: text, page: Page.firstPage)
     }
@@ -76,3 +80,4 @@ private extension CharactersListViewModel {
         }
     }
 }
+

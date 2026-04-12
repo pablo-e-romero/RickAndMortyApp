@@ -20,6 +20,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/onevcat/Kingfisher.git", from: "8.0.0"),
+        .package(url: "https://github.com/pointfreeco/swift-clocks.git", from: "1.0.6"),
     ],
     targets: [
         .target(
@@ -60,7 +61,13 @@ let package = Package(
         ),
         .testTarget(
             name: "CharactersFeatureTests",
-            dependencies: ["Common", "CharactersFeature", "CharactersCore", "CharactersCoreMocks"],
+            dependencies: [
+                "Common",
+                "CharactersFeature",
+                "CharactersCore",
+                "CharactersCoreMocks",
+                .product(name: "Clocks", package: "swift-clocks"),
+            ],
             swiftSettings: swiftSettings
         ),
     ]

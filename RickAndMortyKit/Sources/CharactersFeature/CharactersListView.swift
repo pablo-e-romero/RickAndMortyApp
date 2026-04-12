@@ -4,6 +4,7 @@ import CharactersCore
 import CharactersCoreMocks
 
 struct CharactersListView: View {
+    @State var searchText = ""
     @Bindable var viewModel: CharactersListViewModel
 
     var body: some View {
@@ -13,7 +14,7 @@ struct CharactersListView: View {
                 LoadingView()
             case let .loaded(displayModel):
                 LoadedView(
-                    searchText: $viewModel.searchText,
+                    searchText: $searchText,
                     displayModel: displayModel,
                     characterSelected: viewModel.onCharacterSelected,
                     fetchNextPage: viewModel.fetchNextPage,
@@ -24,8 +25,8 @@ struct CharactersListView: View {
             }
         }
         .navigationTitle("Characters")
-        .task(id: viewModel.searchText) {
-            await viewModel.onSearch(viewModel.searchText)
+        .task(id: searchText) {
+            await viewModel.onSearch(searchText)
         }
     }
 }

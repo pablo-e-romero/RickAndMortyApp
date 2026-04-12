@@ -6,9 +6,9 @@
 //
 
 import Foundation
-import CharactersCore
 import Networking
 
+import CharactersCore
 import CharactersFeature
 import PictureFeature
 
