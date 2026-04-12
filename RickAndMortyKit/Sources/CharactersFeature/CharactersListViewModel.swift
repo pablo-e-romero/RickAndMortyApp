@@ -10,18 +10,18 @@ public protocol CharactersListViewModelFactory {
 
 @Observable
 public final class CharactersListViewModel {
-    public struct DisplayModel {
-        public let characters: [Character]
-        public let hasMore: Bool
+    struct DisplayModel {
+        let characters: [Character]
+        let hasMore: Bool
 
-        public init(characters: [Character], hasMore: Bool) {
+        init(characters: [Character], hasMore: Bool) {
             self.characters = characters
             self.hasMore = hasMore
         }
     }
 
-    public internal(set) var state: State<DisplayModel> = .idle
-    public var searchText: String = ""
+    var state: State<DisplayModel> = .idle
+    var searchText: String = ""
 
     private let repository: CharactersRepositoryProtocol
     private let selectedCharacter: (Character) -> Void
@@ -35,22 +35,22 @@ public final class CharactersListViewModel {
         self.selectedCharacter = selectedCharacter
     }
 
-    public func fetchFirstPage() async {
+    func fetchFirstPage() async {
         await fetch(name: searchText, page: Page.firstPage)
     }
 
-    public func fetchNextPage() async {
+    func fetchNextPage() async {
         guard let nextPage else { return }
         await fetch(name: searchText, page: nextPage)
     }
 
-    public func onSearch(_ text: String) async {
+    func onSearch(_ text: String) async {
         try? await Task.sleep(for: .milliseconds(300))
         guard !Task.isCancelled else { return }
         await fetch(name: text, page: Page.firstPage)
     }
 
-    public func onCharacterSelected(_ character: Character) {
+    func onCharacterSelected(_ character: Character) {
         selectedCharacter(character)
     }
 }

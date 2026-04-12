@@ -1,7 +1,7 @@
 import SwiftUI
 import Domain
 
-public enum Route: Hashable {
+enum Route: Hashable {
     case detail(Character)
 }
 

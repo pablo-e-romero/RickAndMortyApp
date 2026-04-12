@@ -16,7 +16,7 @@ let package = Package(
         .library(name: "Networking", targets: ["Networking"]),
         .library(name: "Data", targets: ["Data"]),
         .library(name: "Mocks", targets: ["Mocks"]),
-        .library(name: "Presentation", targets: ["Presentation"]),
+        .library(name: "CharactersFeature", targets: ["CharactersFeature"]),
     ],
     dependencies: [
         .package(url: "https://github.com/onevcat/Kingfisher.git", from: "8.0.0"),
@@ -45,7 +45,7 @@ let package = Package(
             swiftSettings: swiftSettings
         ),
         .target(
-            name: "Presentation",
+            name: "CharactersFeature",
             dependencies: [
                 "Common",
                 "Domain",
@@ -55,8 +55,8 @@ let package = Package(
             swiftSettings: swiftSettings
         ),
         .testTarget(
-            name: "PresentationTests",
-            dependencies: ["Presentation", "Common", "Domain", "Mocks"],
+            name: "CharactersFeatureTests",
+            dependencies: ["CharactersFeature", "Common", "Domain", "Mocks"],
             swiftSettings: swiftSettings
         ),
     ]

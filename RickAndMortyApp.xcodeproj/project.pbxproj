@@ -12,12 +12,12 @@
 		B10707D42F8416420092B255 /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = B10707D32F8416420092B255 /* Domain */; };
 		B10707D62F8416420092B255 /* Mocks in Frameworks */ = {isa = PBXBuildFile; productRef = B10707D52F8416420092B255 /* Mocks */; };
 		B10707D82F8416420092B255 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = B10707D72F8416420092B255 /* Networking */; };
+		B18816C62F8B9AA3001F539B /* CharactersFeature in Frameworks */ = {isa = PBXBuildFile; productRef = B18816C52F8B9AA3001F539B /* CharactersFeature */; };
 		B1A2C3D42F7C000000000008 /* Common in Frameworks */ = {isa = PBXBuildFile; productRef = B1A2C3D42F7C000000000002 /* Common */; };
 		B1A2C3D42F7C000000000009 /* Data in Frameworks */ = {isa = PBXBuildFile; productRef = B1A2C3D42F7C000000000003 /* Data */; };
 		B1A2C3D42F7C00000000000A /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = B1A2C3D42F7C000000000004 /* Domain */; };
 		B1A2C3D42F7C00000000000B /* Mocks in Frameworks */ = {isa = PBXBuildFile; productRef = B1A2C3D42F7C000000000005 /* Mocks */; };
 		B1A2C3D42F7C00000000000C /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = B1A2C3D42F7C000000000006 /* Networking */; };
-		B1A2C3D42F7C00000000000D /* Presentation in Frameworks */ = {isa = PBXBuildFile; productRef = B1A2C3D42F7C000000000007 /* Presentation */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,9 +64,9 @@
 				B1A2C3D42F7C00000000000B /* Mocks in Frameworks */,
 				B10707D02F8416420092B255 /* Common in Frameworks */,
 				B1A2C3D42F7C00000000000C /* Networking in Frameworks */,
+				B18816C62F8B9AA3001F539B /* CharactersFeature in Frameworks */,
 				B10707D42F8416420092B255 /* Domain in Frameworks */,
 				B10707D22F8416420092B255 /* Data in Frameworks */,
-				B1A2C3D42F7C00000000000D /* Presentation in Frameworks */,
 				B10707D82F8416420092B255 /* Networking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -88,11 +88,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B18816C22F8B9A69001F539B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B1E9A0552F75E43B00CF608E = {
 			isa = PBXGroup;
 			children = (
 				B12E79812F8445EE00C7C467 /* RickAndMortyKit */,
 				B1E9A0602F75E43B00CF608E /* RickAndMortyApp */,
+				B18816C22F8B9A69001F539B /* Frameworks */,
 				B1E9A05F2F75E43B00CF608E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -132,12 +140,12 @@
 				B1A2C3D42F7C000000000004 /* Domain */,
 				B1A2C3D42F7C000000000005 /* Mocks */,
 				B1A2C3D42F7C000000000006 /* Networking */,
-				B1A2C3D42F7C000000000007 /* Presentation */,
 				B10707CF2F8416420092B255 /* Common */,
 				B10707D12F8416420092B255 /* Data */,
 				B10707D32F8416420092B255 /* Domain */,
 				B10707D52F8416420092B255 /* Mocks */,
 				B10707D72F8416420092B255 /* Networking */,
+				B18816C52F8B9AA3001F539B /* CharactersFeature */,
 			);
 			productName = RickAndMortyApp;
 			productReference = B1E9A05E2F75E43B00CF608E /* RickAndMortyApp.app */;
@@ -622,6 +630,10 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = Networking;
 		};
+		B18816C52F8B9AA3001F539B /* CharactersFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CharactersFeature;
+		};
 		B1A2C3D42F7C000000000002 /* Common */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Common;
@@ -641,10 +653,6 @@
 		B1A2C3D42F7C000000000006 /* Networking */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Networking;
-		};
-		B1A2C3D42F7C000000000007 /* Presentation */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Presentation;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
