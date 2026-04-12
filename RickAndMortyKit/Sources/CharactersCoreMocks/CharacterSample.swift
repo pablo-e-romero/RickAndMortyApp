@@ -1,5 +1,5 @@
 import Foundation
-import Domain
+import CharactersCore
 
 public extension Character {
     static func rick() -> Self {

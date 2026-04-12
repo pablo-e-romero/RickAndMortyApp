@@ -1,6 +1,5 @@
 import Foundation
 import Common
-import Domain
 import Networking
 
 struct CharacaterDto: Decodable {

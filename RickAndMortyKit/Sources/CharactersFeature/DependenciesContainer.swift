@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Domain
+import CharactersCore
 
 public struct DependenciesContainer<PictureDetailView: View> {
     private let pictureDetailViewProvider: (URL?, String) -> PictureDetailView
@@ -25,7 +25,7 @@ public struct DependenciesContainer<PictureDetailView: View> {
     }
     
     func makeCharactersListViewModel(
-        selectedCharacter: @escaping (Domain.Character) -> Void
+        selectedCharacter: @escaping (CharactersCore.Character) -> Void
     ) -> CharactersListViewModel {
         charactersListViewModelProvider(selectedCharacter)
     }

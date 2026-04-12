@@ -1,6 +1,7 @@
 import SwiftUI
 import Kingfisher
-import Domain
+import CharactersCore
+import CharactersCoreMocks
 
 struct CharactersListView: View {
     @Bindable var viewModel: CharactersListViewModel

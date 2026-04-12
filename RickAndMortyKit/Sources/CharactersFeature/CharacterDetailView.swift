@@ -1,7 +1,7 @@
 import SwiftUI
 import Kingfisher
-import Domain
-import Mocks
+import CharactersCore
+import CharactersCoreMocks
 
 struct CharacterDetailView: View {
     let character: Character

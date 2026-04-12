@@ -1,8 +1,9 @@
 import Testing
+import Common
 import Foundation
-import Domain
-import Mocks
-@testable import Presentation
+import CharactersCore
+import CharactersCoreMocks
+@testable import CharactersFeature
 
 @MainActor
 @Suite("CharactersListViewModel")

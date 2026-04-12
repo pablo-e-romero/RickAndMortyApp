@@ -5,17 +5,17 @@
 //  Created by Pablo Romero on 12/04/2026.
 //
 
-import Domain
 import Foundation
+import CharactersCore
 
 enum Route: Hashable {
     struct Detail: Hashable {
-        let character: Domain.Character
-        let pictureSelected: (Domain.Character) -> Void
+        let character: CharactersCore.Character
+        let pictureSelected: (CharactersCore.Character) -> Void
     }
     
     case detail(Detail)
-    case picture(Domain.Character)
+    case picture(CharactersCore.Character)
 }
 
 extension Route.Detail {

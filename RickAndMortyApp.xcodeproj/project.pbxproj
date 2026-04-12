@@ -8,16 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		B10707D02F8416420092B255 /* Common in Frameworks */ = {isa = PBXBuildFile; productRef = B10707CF2F8416420092B255 /* Common */; };
-		B10707D22F8416420092B255 /* Data in Frameworks */ = {isa = PBXBuildFile; productRef = B10707D12F8416420092B255 /* Data */; };
-		B10707D42F8416420092B255 /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = B10707D32F8416420092B255 /* Domain */; };
-		B10707D62F8416420092B255 /* Mocks in Frameworks */ = {isa = PBXBuildFile; productRef = B10707D52F8416420092B255 /* Mocks */; };
 		B10707D82F8416420092B255 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = B10707D72F8416420092B255 /* Networking */; };
 		B18816C62F8B9AA3001F539B /* CharactersFeature in Frameworks */ = {isa = PBXBuildFile; productRef = B18816C52F8B9AA3001F539B /* CharactersFeature */; };
 		B18816C82F8B9E64001F539B /* PictureFeature in Frameworks */ = {isa = PBXBuildFile; productRef = B18816C72F8B9E64001F539B /* PictureFeature */; };
+		B18816CA2F8BA92B001F539B /* CharactersCoreMocks in Frameworks */ = {isa = PBXBuildFile; productRef = B18816C92F8BA92B001F539B /* CharactersCoreMocks */; };
+		B18816CC2F8BA933001F539B /* CharactersCore in Frameworks */ = {isa = PBXBuildFile; productRef = B18816CB2F8BA933001F539B /* CharactersCore */; };
 		B1A2C3D42F7C000000000008 /* Common in Frameworks */ = {isa = PBXBuildFile; productRef = B1A2C3D42F7C000000000002 /* Common */; };
-		B1A2C3D42F7C000000000009 /* Data in Frameworks */ = {isa = PBXBuildFile; productRef = B1A2C3D42F7C000000000003 /* Data */; };
-		B1A2C3D42F7C00000000000A /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = B1A2C3D42F7C000000000004 /* Domain */; };
-		B1A2C3D42F7C00000000000B /* Mocks in Frameworks */ = {isa = PBXBuildFile; productRef = B1A2C3D42F7C000000000005 /* Mocks */; };
 		B1A2C3D42F7C00000000000C /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = B1A2C3D42F7C000000000006 /* Networking */; };
 /* End PBXBuildFile section */
 
@@ -58,18 +54,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B10707D62F8416420092B255 /* Mocks in Frameworks */,
 				B1A2C3D42F7C000000000008 /* Common in Frameworks */,
-				B1A2C3D42F7C000000000009 /* Data in Frameworks */,
-				B1A2C3D42F7C00000000000A /* Domain in Frameworks */,
-				B1A2C3D42F7C00000000000B /* Mocks in Frameworks */,
 				B10707D02F8416420092B255 /* Common in Frameworks */,
 				B1A2C3D42F7C00000000000C /* Networking in Frameworks */,
+				B18816CA2F8BA92B001F539B /* CharactersCoreMocks in Frameworks */,
 				B18816C62F8B9AA3001F539B /* CharactersFeature in Frameworks */,
-				B10707D42F8416420092B255 /* Domain in Frameworks */,
-				B10707D22F8416420092B255 /* Data in Frameworks */,
 				B18816C82F8B9E64001F539B /* PictureFeature in Frameworks */,
 				B10707D82F8416420092B255 /* Networking in Frameworks */,
+				B18816CC2F8BA933001F539B /* CharactersCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,17 +130,13 @@
 			name = RickAndMortyApp;
 			packageProductDependencies = (
 				B1A2C3D42F7C000000000002 /* Common */,
-				B1A2C3D42F7C000000000003 /* Data */,
-				B1A2C3D42F7C000000000004 /* Domain */,
-				B1A2C3D42F7C000000000005 /* Mocks */,
 				B1A2C3D42F7C000000000006 /* Networking */,
 				B10707CF2F8416420092B255 /* Common */,
-				B10707D12F8416420092B255 /* Data */,
-				B10707D32F8416420092B255 /* Domain */,
-				B10707D52F8416420092B255 /* Mocks */,
 				B10707D72F8416420092B255 /* Networking */,
 				B18816C52F8B9AA3001F539B /* CharactersFeature */,
 				B18816C72F8B9E64001F539B /* PictureFeature */,
+				B18816C92F8BA92B001F539B /* CharactersCoreMocks */,
+				B18816CB2F8BA933001F539B /* CharactersCore */,
 			);
 			productName = RickAndMortyApp;
 			productReference = B1E9A05E2F75E43B00CF608E /* RickAndMortyApp.app */;
@@ -617,18 +605,6 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = Common;
 		};
-		B10707D12F8416420092B255 /* Data */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Data;
-		};
-		B10707D32F8416420092B255 /* Domain */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Domain;
-		};
-		B10707D52F8416420092B255 /* Mocks */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Mocks;
-		};
 		B10707D72F8416420092B255 /* Networking */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Networking;
@@ -641,21 +617,17 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = PictureFeature;
 		};
+		B18816C92F8BA92B001F539B /* CharactersCoreMocks */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CharactersCoreMocks;
+		};
+		B18816CB2F8BA933001F539B /* CharactersCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CharactersCore;
+		};
 		B1A2C3D42F7C000000000002 /* Common */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Common;
-		};
-		B1A2C3D42F7C000000000003 /* Data */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Data;
-		};
-		B1A2C3D42F7C000000000004 /* Domain */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Domain;
-		};
-		B1A2C3D42F7C000000000005 /* Mocks */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Mocks;
 		};
 		B1A2C3D42F7C000000000006 /* Networking */ = {
 			isa = XCSwiftPackageProductDependency;

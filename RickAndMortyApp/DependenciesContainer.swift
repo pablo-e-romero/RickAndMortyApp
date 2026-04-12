@@ -6,8 +6,7 @@
 //
 
 import Foundation
-import Data
-import Domain
+import CharactersCore
 import Networking
 
 import CharactersFeature

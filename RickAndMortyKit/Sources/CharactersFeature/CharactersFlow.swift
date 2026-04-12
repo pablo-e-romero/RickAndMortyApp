@@ -1,5 +1,4 @@
 import SwiftUI
-import Domain
 
 public struct CharactersFlow<PictureDetailView: View>: View {
     let dependencies: DependenciesContainer<PictureDetailView>

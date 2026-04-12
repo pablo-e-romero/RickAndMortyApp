@@ -12,10 +12,9 @@ let package = Package(
     platforms: [.iOS(.v17), .macOS(.v14)],
     products: [
         .library(name: "Common", targets: ["Common"]),
-        .library(name: "Domain", targets: ["Domain"]),
         .library(name: "Networking", targets: ["Networking"]),
-        .library(name: "Data", targets: ["Data"]),
-        .library(name: "Mocks", targets: ["Mocks"]),
+        .library(name: "CharactersCore", targets: ["CharactersCore"]),
+        .library(name: "CharactersCoreMocks", targets: ["CharactersCoreMocks"]),
         .library(name: "CharactersFeature", targets: ["CharactersFeature"]),
         .library(name: "PictureFeature", targets: ["PictureFeature"]),
     ],
@@ -28,29 +27,25 @@ let package = Package(
             swiftSettings: swiftSettings
         ),
         .target(
-            name: "Domain",
-            swiftSettings: swiftSettings
-        ),
-        .target(
             name: "Networking",
             swiftSettings: swiftSettings
         ),
         .target(
-            name: "Data",
-            dependencies: ["Common", "Domain", "Networking"],
+            name: "CharactersCore",
+            dependencies: ["Common", "Networking"],
             swiftSettings: swiftSettings
         ),
         .target(
-            name: "Mocks",
-            dependencies: ["Domain"],
+            name: "CharactersCoreMocks",
+            dependencies: ["CharactersCore"],
             swiftSettings: swiftSettings
         ),
         .target(
             name: "CharactersFeature",
             dependencies: [
                 "Common",
-                "Domain",
-                "Mocks",
+                "CharactersCore",
+                "CharactersCoreMocks",
                 .product(name: "Kingfisher", package: "Kingfisher"),
             ],
             swiftSettings: swiftSettings
@@ -59,14 +54,13 @@ let package = Package(
             name: "PictureFeature",
             dependencies: [
                 "Common",
-                "Domain",
                 .product(name: "Kingfisher", package: "Kingfisher"),
             ],
             swiftSettings: swiftSettings
         ),
         .testTarget(
             name: "CharactersFeatureTests",
-            dependencies: ["CharactersFeature", "Common", "Domain", "Mocks"],
+            dependencies: ["Common", "CharactersFeature", "CharactersCore", "CharactersCoreMocks"],
             swiftSettings: swiftSettings
         ),
     ]

@@ -1,4 +1,5 @@
-import Domain
+import Common
+import Foundation
 import Networking
 
 public struct CharactersRepository: CharactersRepositoryProtocol {

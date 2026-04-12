@@ -1,6 +1,6 @@
 import Foundation
 import Common
-import Domain
+import CharactersCore
 
 @Observable
 public final class CharactersListViewModel {

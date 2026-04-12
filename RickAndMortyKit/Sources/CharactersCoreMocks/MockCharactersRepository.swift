@@ -1,5 +1,6 @@
+import Common
 import Foundation
-import Domain
+import CharactersCore
 
 public final class MockCharactersRepository: CharactersRepositoryProtocol, @unchecked Sendable {
     public var result: Result<Paginated<Character>, Error>!

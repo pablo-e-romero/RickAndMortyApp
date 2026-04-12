@@ -1,3 +1,5 @@
+import Common
+
 public protocol CharactersRepositoryProtocol: Sendable {
     func fetchCharacters(
         name: String?,

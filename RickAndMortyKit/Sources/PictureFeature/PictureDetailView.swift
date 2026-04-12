@@ -6,9 +6,7 @@
 //
 
 import SwiftUI
-import Domain
 import Kingfisher
-import Mocks
 
 public struct PictureDetailView: View {
     let url: URL?
@@ -33,10 +31,8 @@ public struct PictureDetailView: View {
 }
 
 #Preview {
-    @Previewable let morty = Domain.Character.morty()
-
     PictureDetailView(
-        url: morty.image,
-        accessibilityLabel: "Portrait of \(morty.name)"
+        url: URL(string: "https://rickandmortyapi.com/api/character/avatar/1.jpeg"),
+        accessibilityLabel: "Portrait of Rick"
     )
 }
