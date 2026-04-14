@@ -15,18 +15,18 @@ public final class CharactersListViewModel {
     }
 
     var state: State<DisplayModel> = .idle
-    private var searchText: String = ""
-
-    private let clock: any Clock<Duration>
-
+    
     private let repository: CharactersRepositoryProtocol
+    private let clock: any Clock<Duration>
     private let selectedCharacter: (Character) -> Void
+  
     private var nextPage: Int?
+    private var searchText: String = ""
 
     public init(
         repository: CharactersRepositoryProtocol,
-        selectedCharacter: @escaping (Character) -> Void,
         clock: any Clock<Duration> = ContinuousClock(),
+        selectedCharacter: @escaping (Character) -> Void,
     ) {
         self.repository = repository
         self.selectedCharacter = selectedCharacter
