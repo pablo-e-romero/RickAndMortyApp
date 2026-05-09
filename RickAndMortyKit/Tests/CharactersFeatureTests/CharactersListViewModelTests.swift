@@ -11,14 +11,14 @@ import CharactersCoreMocks
 struct CharactersListViewModelTests {
     var repository: MockCharactersRepository!
     var clock: ImmediateClock<Duration>!
-    
-    // MARK: - Initial state
-    
+        
     init() {
         self.repository = MockCharactersRepository()
         self.repository.result = .success(.empty)
         self.clock = ImmediateClock()
     }
+
+    // MARK: - Initial state
 
     @Test("Initial state is idle")
     func initialStateIsIdle() {
